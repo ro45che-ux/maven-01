@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven'   // change name only if Jenkins tool name is different
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -24,17 +20,11 @@ pipeline {
                 sh 'mvn test'
             }
         }
-
-        stage('Run Application') {
-            steps {
-                sh 'java -jar target/*.jar'
-            }
-        }
     }
 
     post {
         success {
-            echo 'Build and deployment successful!'
+            echo 'Build successful!'
         }
         failure {
             echo 'Build failed!'
